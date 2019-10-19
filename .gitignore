@@ -1,0 +1,3 @@
+*.eggs
+*.pytest
+*.egg-info
