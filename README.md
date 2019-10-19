@@ -12,7 +12,7 @@ This package requires >= Python 3.7.4 and PyTest
 ### Installing
 
 ```
-git clone (repo link)
+git clone https://github.com/chandojo/ACSMRiskStratification.git
 ```
 
 ## Using the Stratification
