@@ -1,23 +1,24 @@
 # Exercise Coach Tools
 
-This is a library of tools for fitness/exercise coaches, fitness specialists, exercise physiologists, and personal trainers to use.
+Exercise Coach Tools is an open source library of tools for fitness/exercise coaches, fitness specialists, exercise physiologists, and personal trainers.  The objective of Exercise Coach Tools is to help these people be more efficient and spend more time focusing on their clients instead of the equations/formulas needed to make analyses.
 
 ## Table of Contents
 1. [Getting Started](#gettingstarted)
 2. [ACSM Risk Stratification](#acsmriskstratification)
 3. [Percentage Calculators](#percentagecalculators)
-4. [Testing](#testing)
+4. [Metabolic Rate Calculators](#metabolicratecalculators)
+5. [Testing](#testing)
 
 ## Getting Started <a name="gettingstarted"></a>
 ### Prerequisites
 
-This package requires >= Python 3.7.4 and PyTest
+This package requires **>= Python 3.7.4**
 
 ### Installing
 
-```
-git clone https://github.com/chandojo/ACSMRiskStratification.git
-```
+`git clone https://github.com/chandojo/ExerciseCoachTools.git`
+
+`pip install -r requirements.txt`
 
 ## ACSM Risk Stratification <a name="acsmriskstratification"></a>
 This is a tool for determining risk of cardiovascular disease based on *ACSM’s Guidelines for Exercise Testing and Prescription-8th ed. Philadelphia: Lippincott Williams & Wilkins*
@@ -25,7 +26,7 @@ This is a tool for determining risk of cardiovascular disease based on *ACSM’s
 This tool is not a substitute for advice from a doctor and is used to help fitness specialists refer potential clients to physicians due to possible cardiovascular health risk.
 
 ### Using the Stratification
-A `Patient` object must pass through the class to use methods.
+A `Patient` object must be created to use methods.
 
 `Patient` takes the following parameters in the order listed:
 - sex (str *male or female*)
@@ -47,23 +48,23 @@ A `Patient` object must pass through the class to use methods.
 - oral_glucose_tolerance (int *positive only* ; input *0* if no available value but fasting_glucose value is available)
 
 **Useful functions:**
-- `RiskFactorAssessment(patient).result_risk_classification()`
+- `risk_classification(Patient)`
   - Returns patient's risk classification based off of the ACSM Guidelines. Classifications range from low, moderate, and high.
-- `RiskFactorAssessment(patient).net_risk_factors()`
+- `total_risk_factors(Patient)`
   - Returns patient's net total risk factors. This total is based off of ACSM's algorithm.
 
 
-### Example
+#### Examples
 ```
-from risk.risk_stratification import RiskFactorAssessment
+from risk.risk_stratification import Patient, risk_classification, total_risk_factors
 
 steve_buscemi = Patient('male', 61, 'no', 'yes', 25, 0, 'yes', 'no', 119, 78, 'no', 100, 70, 'no', 100, 60, 0)
 
-RiskFactorAssessment(steve_buscemi).result_risk_classification()
-# returns "Your risk total is 1. You are at a low risk for cardiovascular disease"
+risk_classification(steve_buscemi)
+# 'Your risk total is 2. You are at a moderate risk for cardiovascular disease. Medical check-up recommended for participation in vigorous physical activity.'
 
-RiskFactorAssessment(steve_buscemi).net_risk_factors()
-# returns 1
+total_risk_factors(steve_buscemi)
+# returns 2
 
 ```
 
@@ -71,22 +72,60 @@ RiskFactorAssessment(steve_buscemi).net_risk_factors()
 
 **Useful functions:**
 - `percentage_value(desired_percentage, 1_rep_max_weight)`
-  - Returns weight value associated with desired percentage
+  - Returns weight value associated with desired percentage. Can use kg or lbs
+- `one_rep_max_estimation(reps completed, weight)`
+  - Returns dictionary of estimated 1-rep max using Brzycki, Epley, Mayhew, Lander, and Lombardi formulas
+  - Note: Reps completed **must be** > 1
 
-
-### Example
+#### Examples
 
 ```
 from percentage_calculators.percentage_calculators import percentage_value
 
 percentage_value(80, 100)
-# returns 80
+# returns 80.0
 ```
 
+```
+from percentage_calculators.one_rep_max_estimation import one_rep_max_estimation
+
+one_rep_max_estimation(2, 100)
+# returns {'brzycki_formula': 102.85949393128985, 'epley_formula': 106.66666666666667, 'mayhew_formula': 106.41304152560984, 'lander_formula': 104.21275910157765, 'lombardi_formula': 107.17734625362931}
+```
+
+## Metabolic Rate Calculators <a name="metabolicratecalculators"></a>
+
+A `MetabolicClient` object must be created to use methods.
+
+`MetabolicClient` takes the following parameters in the order listed:
+- sex (str *male or female*)
+- age (int *positive only*)
+- weight (float *positive only*)
+- height (float *positive only*)
+
+**Useful functions:**
+- `bmr_results(MetabolicClient)`
+  - Returns client's estimated BMR using Harris-Benedict and Mifflin formulas
+- `harris_benedict_bmr(MetabolicClient)`
+  - Returns client's estimated BMR using Harris-Benedict formula
+- `mifflin_bmr(MetabolicClient)`
+  - Returns client's estimated BMR using Mifflin St Jeor formula
+
+- `get_calories_by_activity(activity_level, bmr)`
+  - Returns client's daily metabolic rate based on activity level
+  - Activity level options:
+      - Sedentary — desk job and little to no exercise
+      - Lightly Active — light exercise/sports 1–3 days/week
+      - Moderately Active — moderate exercise/sports 3–5 days/week
+      - Very Active — hard exercise/sports 6–7 days/week
+      - Extremely Active — hard daily exercise/sports and physical job or training
+
+
+#### Examples
+Example to come...
+
 ## Running the tests <a name="testing"></a>
-```
-python setup.py test
-```
+`python setup.py test`
 
 ## Authors
 chandojo

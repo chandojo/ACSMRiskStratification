@@ -16,14 +16,14 @@ class ValidateValue():
 
     def valueIsPositiveInteger(self):
         integer_value = int(self._value)
-        if integer_value > 0:
+        if integer_value >= 0:
             return integer_value
         else:
             raise ValueError('%s is an incorrect value. It must be a number and must higher than zero.' % self._value)
 
     def valueIsPositiveFloat(self):
         float_value = float(self._value)
-        if float_value > 0:
+        if float_value >= 0:
             return float_value
         else:
             raise ValueError('%s is an incorrect value. It must be a number and must higher than zero.' % self._value)
@@ -33,3 +33,9 @@ class ValidateValue():
             return ValidateValue._yes_no[self._value]
         else:
             raise ValueError('%s is an incorrect value. Must be yes or no.' % self._value)
+
+    def valueIsLessThan10(self):
+        if ValidateValue(self._value).valueIsPositiveInteger() <= 10:
+            return self._value
+        else:
+            raise ValueError('%s is an incorrect value.  Must be 10 or less.' % self._value)

@@ -3,6 +3,21 @@ from unittest.mock import Mock
 from risk.risk_stratification import *
 
 
+class RiskClassificationTestMethod(unittest.TestCase):
+    def setUp(self):
+        self.fake_steve_buscemi = Patient('male', 61, 'no', 'yes', 25, 0, 'yes', 'no', 119, 78, 'no', 100, 70, 'no', 100, 60, 0)
+
+    def test_risk_classification(self):
+        value = 2
+        return_value = risk_classification(self.fake_steve_buscemi)
+        self.assertEqual(RiskFactorAssessmentClassification()._moderate_risk_category(value), return_value)
+
+
+    def test_total_risk_factors(self):
+        value = 2
+        return_value = total_risk_factors(self.fake_steve_buscemi)
+        self.assertEqual(value, return_value)
+
 class RiskFactorAssessmentClassificationTestMethods(unittest.TestCase):
     def setUp(self):
         self.risk_classification = RiskFactorAssessmentClassification()

@@ -3,3 +3,4 @@
 *.idea
 *.pytest
 *.egg-info
+venv

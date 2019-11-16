@@ -1,5 +1,13 @@
 from validation.value_validation import ValidateValue
 
+def risk_classification(patient):
+    classification = RiskFactorAssessment(patient).result_risk_classification()
+    return classification
+
+def total_risk_factors(patient):
+    total = RiskFactorAssessment(patient).net_risk_factors()
+    return total
+
 class Patient(object):
     def __init__(self, sex, age, smoker, sedentary, bmi, waist_girth, male_family_death_before_55, female_family_death_before_65, systolic, diastolic, hypertensive, ldl, hdl, using_lipid_lowering_medication, cholesterol, fasting_glucose, oral_glucose_tolerance):
         self._sex = ValidateValue(sex).valueIsMaleFemale()
@@ -18,7 +26,7 @@ class Patient(object):
         self._using_lipid_lowering_medication = ValidateValue(using_lipid_lowering_medication).valueIsYesNo()
         self._cholesterol = ValidateValue(cholesterol).valueIsPositiveInteger()
         self._fasting_glucose = ValidateValue(fasting_glucose).valueIsPositiveInteger()
-        self.oral_glucose_tolerance = ValidateValue(oral_glucose_tolerance).valueIsPositiveInteger()
+        self._oral_glucose_tolerance = ValidateValue(oral_glucose_tolerance).valueIsPositiveInteger()
 
 
 class RiskFactorAssessment(object):
@@ -30,10 +38,10 @@ class RiskFactorAssessment(object):
         return classification
 
     def net_risk_factors(self):
-        total = self.get_risk_factor_count() - self.get_negative_risk_factor_count()
+        total = self._get_risk_factor_count() - self._get_negative_risk_factor_count()
         return total
 
-    def get_risk_factor_count(self):
+    def _get_risk_factor_count(self):
         _count_risk_factors = [
             self._is_age_risk(),
             self._is_obesity_risk(),
@@ -48,7 +56,7 @@ class RiskFactorAssessment(object):
             ]
         return _count_risk_factors.count(True)
 
-    def get_negative_risk_factor_count(self):
+    def _get_negative_risk_factor_count(self):
         _count_negative_risk_factor = [ self._is_hdl_negative_risk() ]
         return _count_negative_risk_factor.count(True)
 
