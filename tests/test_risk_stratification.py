@@ -2,7 +2,6 @@ import unittest
 from unittest.mock import Mock
 from risk.risk_stratification import *
 
-#TODO: create testing module or way to run all tests with one command
 
 class RiskFactorAssessmentClassificationTestMethods(unittest.TestCase):
     def setUp(self):
@@ -26,10 +25,15 @@ class RiskFactorAssessmentClassificationTestMethods(unittest.TestCase):
     def tearDown(self):
         self.risk_classification = None
 
-class RiskFactorAssessmentTestMethods(unittest.TestCase):
+
+class RiskFactorAssessmentTrueTestMethods(unittest.TestCase):
     def setUp(self):
         self.mock = Mock()
         self.patient = RiskFactorAssessment(self.mock)
+
+    def test_is_obesity_risk_true(self):
+        self.mock._bmi = 40
+        self.assertTrue(self.patient._is_obesity_risk())
 
     def test_is_age_risk_true(self):
         self.mock._sex = 'male'
@@ -57,11 +61,22 @@ class RiskFactorAssessmentTestMethods(unittest.TestCase):
 
     def test_is_pre_diabetes_risk_true(self):
         self.mock._fasting_glucose = 120
+        self.mock._oral_glucose_tolerance = 150
         self.assertTrue(self.patient._is_pre_diabetes_risk())
 
     def test_is_hdl_negative_risk_true(self):
         self.mock._hdl = 80
         self.assertTrue(self.patient._is_hdl_negative_risk())
+
+class RiskFactorAssessmentFalseTestMethods(unittest.TestCase):
+    def setUp(self):
+        self.mock = Mock()
+        self.patient = RiskFactorAssessment(self.mock)
+
+    def test_is_obesity_risk_false(self):
+        self.mock._bmi = 0
+        self.mock._waist_girth = 0
+        self.assertFalse(self.patient._is_obesity_risk())
 
     def test_is_age_risk_false(self):
         self.mock._sex = 'female'
@@ -89,6 +104,7 @@ class RiskFactorAssessmentTestMethods(unittest.TestCase):
 
     def test_is_pre_diabetes_risk_false(self):
         self.mock._fasting_glucose = 80
+        self.mock._oral_glucose_tolerance = 100
         self.assertFalse(self.patient._is_pre_diabetes_risk())
 
     def test_is_hdl_negative_risk_false(self):

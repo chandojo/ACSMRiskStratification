@@ -21,6 +21,13 @@ class ValidateValue():
         else:
             raise ValueError('%s is an incorrect value. It must be a number and must higher than zero.' % self._value)
 
+    def valueIsPositiveFloat(self):
+        float_value = float(self._value)
+        if float_value > 0:
+            return float_value
+        else:
+            raise ValueError('%s is an incorrect value. It must be a number and must higher than zero.' % self._value)
+
     def valueIsYesNo(self):
         if self._value in ValidateValue._yes_no.keys():
             return ValidateValue._yes_no[self._value]
