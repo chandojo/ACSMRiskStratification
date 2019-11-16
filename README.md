@@ -16,7 +16,7 @@ This package requires >= Python 3.7.4 and PyTest
 ### Installing
 
 ```
-git clone https://github.com/chandojo/ACSMRiskStratification.git
+git clone https://github.com/chandojo/ExerciseCoachTools.git
 ```
 
 ## ACSM Risk Stratification <a name="acsmriskstratification"></a>
