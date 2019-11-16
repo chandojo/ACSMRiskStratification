@@ -70,7 +70,9 @@ RiskFactorAssessment(steve_buscemi).net_risk_factors()
 ## Percentage Calculators <a name="percentagecalculators"></a>
 
 **Useful functions:**
-- `percentage_value(desired_percentage, 1-rep_max_value)`
+- `percentage_value(desired_percentage, 1_rep_max_weight)`
+  - Returns weight value associated with desired percentage
+
 
 ### Example
 

@@ -1,3 +1,5 @@
 *.eggs
+*.egg
+*.idea
 *.pytest
 *.egg-info
