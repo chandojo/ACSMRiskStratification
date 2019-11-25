@@ -16,10 +16,10 @@ This package requires **>= Python 3.7.4**
 
 ### Installing
 
-`git clone https://github.com/chandojo/ExerciseCoachTools.git`
-
+```
+git clone https://github.com/chandojo/ExerciseCoachTools.git
+```
 `pip install -r requirements.txt`
-
 ## ACSM Risk Stratification <a name="acsmriskstratification"></a>
 This is a tool for determining risk of cardiovascular disease based on *ACSM’s Guidelines for Exercise Testing and Prescription-8th ed. Philadelphia: Lippincott Williams & Wilkins*
 
