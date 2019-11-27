@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.com/chandojo/ExerciseCoachTools.svg?branch=master)](https://travis-ci.com/chandojo/ExerciseCoachTools)
+
 # Exercise Coach Tools
 
 Exercise Coach Tools is an open source library of tools for fitness/exercise coaches, fitness specialists, exercise physiologists, and personal trainers.  The objective of Exercise Coach Tools is to help these people be more efficient and spend more time focusing on their clients instead of the equations/formulas needed to make analyses.
