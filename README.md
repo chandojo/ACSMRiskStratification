@@ -18,10 +18,10 @@ This package requires **>= Python 3.7.4**
 
 ### Installing
 
-```
-git clone https://github.com/chandojo/ExerciseCoachTools.git
-```
+`git clone https://github.com/chandojo/ExerciseCoachTools.git`
+
 `pip install -r requirements.txt`
+
 ## ACSM Risk Stratification <a name="acsmriskstratification"></a>
 This is a tool for determining risk of cardiovascular disease based on *ACSM’s Guidelines for Exercise Testing and Prescription-8th ed. Philadelphia: Lippincott Williams & Wilkins*
 
@@ -102,8 +102,8 @@ A `MetabolicClient` object must be created to use methods.
 `MetabolicClient` takes the following parameters in the order listed:
 - sex (str *male or female*)
 - age (int *positive only*)
-- weight (float *positive only*)
-- height (float *positive only*)
+- weight (pounds - float *positive only*)
+- height (inches - float *positive only*)
 
 **Useful functions:**
 - `bmr_results(MetabolicClient)`
@@ -124,7 +124,24 @@ A `MetabolicClient` object must be created to use methods.
 
 
 #### Examples
-Example to come...
+```
+from kcal.metabolic_rate_prediction import MetabolicClient, bmr_results, harris_benedict_bmr, mifflin_bmr
+from kcal.daily_kcal_by_lifestyle import get_calories_by_activity
+
+sue_bird = MetabolicClient('female', 39, 150, 69)
+
+bmr_results(sue_bird)
+# returns {'harris_benedict_bmr': 974.5799999999999, 'mifflin_st_jeor_bmr': 826.6300000000001}
+
+sue_bird_bmr = harris_benedict_bmr(sue_bird)
+# returns 974.5799999999999
+
+mifflin_bmr(sue_bird)
+# returns 826.6300000000001
+
+get_calories_by_activity('very active', sue_bird_bmr)
+# returns 1681.1505 (kcal/day)
+```
 
 ## Running the tests <a name="testing"></a>
 `python setup.py test`
