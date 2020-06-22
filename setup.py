@@ -4,7 +4,7 @@ with open('README.md', 'r') as fh:
     long_description = fh.read()
 
 setup(
-    name='ExerciseCoachTools',
+    name='exercisecoachtools',
     version='0.1.1',
     packages=find_packages(exclude=['contrib', 'docs', 'tests']),
     python_requires='>=3.7, <4',
