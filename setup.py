@@ -5,7 +5,7 @@ with open('README.md', 'r') as fh:
 
 setup(
     name='exercisecoachtools',
-    version='0.1.1',
+    version='0.1.2',
     packages=find_packages(exclude=['contrib', 'docs', 'tests']),
     python_requires='>=3.7, <4',
     url='https://github.com/chandojo/ExerciseCoachTools',
