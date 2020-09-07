@@ -13,9 +13,19 @@ install:
 script:
 - python setup.py test
 
-deploy:
-  provider: pypi
-  username: __token__
-  password:
-    secure: h63N3Bumu9QFoQWnfZ96r7mC0F/aFvU8zMcr4/ybW7ZMch8R/78C45343IXhe+WopiYwoyU3CD72E5ud4+ZCPn4nHaJfdW5IVq4eN1uETztqugX6tQpqR/KQRJQGTC53B2mhm375YAtSL8kX48zLslK8g+dxlk0BXzyiPvKDaDQLlsJ1NMc25OGwASIJvjd0dwWyL8DcOZvnXo0qfeP6gxCaJJNfcHakNTpTbInYmQ3xMGgrfm7CDOJSl7sV2F/0simnFuxd+gEc9j3FeDZybcj4zeZ9oyjN+psjYjt7nwghTjTOTFPo21UXiG/5bBREUVjBPFqqRvDuSiD5eFFPG1eOn2QlSFicuQbKptGApukafU9fYdVfD2LhsdABV4Eizh9jT1hbrms4FrgPlcOxAJ21lTqOXDz2Gyla+AeAduys+AwpANd30G6Opr/+oN0V/8VxWnd8r5Wq/Y5ZUqoV4teqtUfzicP6kpGSEB2nqvooHbBmN7f7yiY1Wkb3jBmnEs+TqukLwKIV7ae7O4flT1271DylfeUnhA4IsgQMv1xJH7W/Nl6IHxM5ya4v5DHlJvAP30KM8lGm/LZKzqs2xAvqoQ7yvOPQaVmMfDfKZ+OfgS4vIEwn+dzaTL3Lhmt2w6+xaNBJ3zciv5xY3zQrvCJkYXjvyWAD9UQ3uDKha1o=
-  skip_existing: true
+stages:
+  - test
+  - deploy
+
+jobs:
+  include:
+    - stage: deploy
+      python: 3.8
+      install: skip
+      script: skip
+      deploy:
+        provider: pypi
+        username: __token__
+        password:
+          secure: h63N3Bumu9QFoQWnfZ96r7mC0F/aFvU8zMcr4/ybW7ZMch8R/78C45343IXhe+WopiYwoyU3CD72E5ud4+ZCPn4nHaJfdW5IVq4eN1uETztqugX6tQpqR/KQRJQGTC53B2mhm375YAtSL8kX48zLslK8g+dxlk0BXzyiPvKDaDQLlsJ1NMc25OGwASIJvjd0dwWyL8DcOZvnXo0qfeP6gxCaJJNfcHakNTpTbInYmQ3xMGgrfm7CDOJSl7sV2F/0simnFuxd+gEc9j3FeDZybcj4zeZ9oyjN+psjYjt7nwghTjTOTFPo21UXiG/5bBREUVjBPFqqRvDuSiD5eFFPG1eOn2QlSFicuQbKptGApukafU9fYdVfD2LhsdABV4Eizh9jT1hbrms4FrgPlcOxAJ21lTqOXDz2Gyla+AeAduys+AwpANd30G6Opr/+oN0V/8VxWnd8r5Wq/Y5ZUqoV4teqtUfzicP6kpGSEB2nqvooHbBmN7f7yiY1Wkb3jBmnEs+TqukLwKIV7ae7O4flT1271DylfeUnhA4IsgQMv1xJH7W/Nl6IHxM5ya4v5DHlJvAP30KM8lGm/LZKzqs2xAvqoQ7yvOPQaVmMfDfKZ+OfgS4vIEwn+dzaTL3Lhmt2w6+xaNBJ3zciv5xY3zQrvCJkYXjvyWAD9UQ3uDKha1o=
+        skip_existing: true
