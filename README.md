@@ -9,7 +9,8 @@ Exercise Coach Tools is an open source library of tools for fitness/exercise coa
 2. [ACSM Risk Stratification](#acsmriskstratification)
 3. [Percentage Calculators](#percentagecalculators)
 4. [Metabolic Rate Calculators](#metabolicratecalculators)
-5. [Testing](#testing)
+5. [Workout Programs](#workoutprograms)
+6. [Testing](#testing)
 
 ## Getting Started <a name="gettingstarted"></a>
 ### Prerequisites
@@ -139,6 +140,23 @@ mifflin_bmr(sue_bird)
 
 get_calories_by_activity('very active', sue_bird_bmr)
 # returns 1681.1505 (kcal/day)
+```
+
+## Workout Programs <a name="workoutprograms"></a>
+
+### Current workout programs:
+- `fivethreeone_program` : Returns [weight, reps] to use each week per set. Based off of Jim Wendler's 5/3/1 program.  For a description of the program read [here](https://www.t-nation.com/workouts/531-how-to-build-pure-strength). 
+
+
+#### Examples
+```
+from workout_programs import Workouts
+
+my_workout= Workouts(100)
+
+my_workout.fivethreeone_program()
+# returns {'Week 1': [[58.5, 5], [67.5, 5], [76.5, 5]], 'Week 2': [[63.0, 3] [72.0, 3], [81.0, 3]], 'Week 3': [[67.5, 5], [76.5, 3], [85.5, 1]], 'Week 4': [[36.0, 5], [45.0, 5], [54.0, 5]]}
+
 ```
 
 ## Running the tests <a name="testing"></a>
