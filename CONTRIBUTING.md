@@ -35,4 +35,6 @@ When creating an issue for a feature or enchancement, answer these questions:
     `python setup.py test`
 5. Make sure your fork is up-to-date with upstream
 6. Push the topic branch to your fork
-7. Open a Pull Request 
+7. Open a Pull Request and include the following in the description:
+    - Issue number
+    - Changes made
