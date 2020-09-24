@@ -10,7 +10,7 @@ Exercise Coach Tools is an open source library of tools for fitness/exercise coa
 3. [Percentage Calculators](#percentagecalculators)
 4. [Metabolic Rate Calculators](#metabolicratecalculators)
 5. [Workout Programs](#workoutprograms)
-6. [Testing](#testing)
+6. [Contributing](#contributing)
 
 ## Getting Started <a name="gettingstarted"></a>
 ### Prerequisites
@@ -157,10 +157,9 @@ my_workout= Workouts(100)
 my_workout.fivethreeone_program()
 # returns {'Week 1': [[58.5, 5], [67.5, 5], [76.5, 5]], 'Week 2': [[63.0, 3] [72.0, 3], [81.0, 3]], 'Week 3': [[67.5, 5], [76.5, 3], [85.5, 1]], 'Week 4': [[36.0, 5], [45.0, 5], [54.0, 5]]}
 
-```
-
-## Running the tests <a name="testing"></a>
-`python setup.py test`
+``` 
+## Contributing <a name="contributing"></a>
+Interested in contributing? Read our [contributing guidelines](CONTRIBUTING.md) for more information. 
 
 ## Authors
 chandojo
